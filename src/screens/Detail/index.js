@@ -11,7 +11,7 @@ export default Detail = () => {
     const route = useRoute();
     const incident = route.params.incident;
 
-    const message = `Hello ${incident.name}, im getting in touch because I would like to help in the case ${incident.title} with the value of ${Intl.NumberFormat('de', { style: 'currency', currency: 'EUR' }).format(incident.value)}`;
+    const message = `Hello ${incident.ong.name}, im getting in touch because I would like to help in the case ${incident.title} with the value of ${Intl.NumberFormat('de', { style: 'currency', currency: 'EUR' }).format(incident.value)}`;
 
     const navigateBack = () => {
         navigation.goBack();
@@ -20,13 +20,13 @@ export default Detail = () => {
     const sendMail = () => {
         MailComposer.composeAsync({
             subject: `Hero from the case: ${incident.title}`,
-            recipients: [incident.email],
+            recipients: [incident.ong.email],
             body: message
         })
     };
 
     const sendWhatsapp = () => {
-        Linking.openURL(`whatsapp://send?phone=${incident.whatsapp}&text=${message}`);
+        Linking.openURL(`whatsapp://send?phone=${incident.ong.whatsapp}&text=${message}`);
     }
 
     return (
@@ -40,7 +40,7 @@ export default Detail = () => {
 
             <View style={styles.incident}>
                 <Text style={[styles.incidentProperty, { marginTop: 0 }]}>ONG: </Text>
-    <Text style={styles.incidentValue}>{incident.name} from {incident.city}/{incident.uf}</Text>
+    <Text style={styles.incidentValue}>{incident.ong.name} from {incident.ong.city}/{incident.ong.uf}</Text>
 
                 <Text style={styles.incidentProperty}>CASE: </Text>
                 <Text style={styles.incidentValue}>{incident.title}</Text>

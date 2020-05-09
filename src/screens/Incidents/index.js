@@ -55,14 +55,14 @@ export default Incidents = () => {
             <FlatList
                 data={incidents}
                 style={styles.incidentList}
-                keyExtractor={incident => String(incident.id)}
+                keyExtractor={incident => String(incident._id)}
                 showsVerticalScrollIndicator={false}
                 onEndReached={loadIncidents}
                 onEndReachedThreshold={0.2}
                 renderItem={({ item: incident }) => (
                     <View style={styles.incident}>
                         <Text style={styles.incidentProperty}>ONG: </Text>
-                        <Text style={styles.incidentValue}>{incident.name}</Text>
+                        <Text style={styles.incidentValue}>{incident.ong.name}</Text>
     
                         <Text style={styles.incidentProperty}>CASE: </Text>
                         <Text style={styles.incidentValue}>{incident.title}</Text>
